@@ -14,7 +14,7 @@ if (! class_exists('UfGoogleAnalyticsPlugin')) {
 		function UfGoogleAnalyticsPlugin($name, $file, $account) {
 			$options = array(
 				new UfOptionGroup('General', array(
-				    new UfOption('uf_google_analytics_account', get_option('uf_google_analytics_account'), 'Google Analytics Account'),
+				    new UfOption('uf_google_analytics_account', '', 'Google Analytics Account'),
 				)),
 			);
 			$this->add_admin_page(new UfOptionsPage($name, '', $options));
@@ -28,7 +28,7 @@ if (! class_exists('UfGoogleAnalyticsPlugin')) {
 		function add_plugin_hooks() {
 			parent::add_plugin_hooks();
 
-			$controller = new UfGoogleAnalyticsController($this->account, get_option('uf_google_analytics_account'));
+			$controller = new UfGoogleAnalyticsController($this->account);
 			$this->register_action($controller, 'google_analytics');
 		}
 		

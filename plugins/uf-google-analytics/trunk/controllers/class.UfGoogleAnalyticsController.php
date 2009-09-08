@@ -12,11 +12,6 @@ if (! class_exists('UfGoogleAnalyticsController')) {
 			$this->{get_parent_class(__CLASS__)}();
 		}
 
-		function handle_google_analytics_action() {
-                        if($account) {
-			  $account->track();
-                        }
-		}
 	}
 }
 ?>

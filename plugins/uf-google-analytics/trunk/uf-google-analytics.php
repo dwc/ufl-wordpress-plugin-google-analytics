@@ -5,7 +5,7 @@ Version: 0.1
 Plugin URI: http://www.webadmin.ufl.edu/
 Description: Handling of the Google Analytics footer code and related text on WordPress sites at UF. Requires the <code>uf-plugin-framework</code> plugin.
 Author: Joey Spooner <spooner@ufl.edu>
-Author URI: http://dev.webadmin.ufl.edu/~dwc/
+Author URI: http://www.spoonstein.com/
 */
 
 define('UF_GOOGLE_ANALYTICS_PLUGIN_BASE', dirname(__FILE__) . '/');
@@ -30,15 +30,14 @@ function uf_google_analytics_display() {
 	global $uf_google_analytics_plugin;
   
         $account = null;
-	//	echo print_r($uf_google_analytics_plugin);
 	$account = $uf_google_analytics_plugin->account->account;
-	// echo("Account is " . $account);
 	if($account) {
 ?>
-
-<script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
-<script type="text/javascript">var pageTracker = _gat._getTracker("<?php $account; ?>"); pageTracker._trackPageview();</script>
-
+<script type="text/javascript">var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www."); document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));</script>
+<script type="text/javascript">try { var pageTracker = _gat._getTracker("<?php echo $account; ?>"); pageTracker._trackPageview(); } catch(err) {}</script>
+<script type="text/javascript" src="http://assets.webadmin.ufl.edu/js/ga-outbound-tracking/1.0.0/ga-outbound-tracking.min.js"></script>
+<script type="text/javascript" src="http://assets.webadmin.ufl.edu/js/common/1.0.1/common.min.js"></script>
+<script type="text/javascript" src="http://assets.webadmin.ufl.edu/js/search/1.0.1/search.min.js"></script>
 <?php
 	}
 }

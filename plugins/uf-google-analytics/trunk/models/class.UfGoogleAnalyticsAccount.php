@@ -9,9 +9,6 @@ if (! class_exists('UfGoogleAnalyticsAccount')) {
 			$this->account = $account;
 		}
 
-		function track() {
-		  die('I am going to insert into the wp_footer the code');
-		}
 	}
 }
 ?>
