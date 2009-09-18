@@ -3,7 +3,6 @@ require_once(UF_PLUGIN_FRAMEWORK_LIBRARY . '/class.UfOption.php');
 require_once(UF_PLUGIN_FRAMEWORK_LIBRARY . '/class.UfOptionGroup.php');
 require_once(UF_PLUGIN_FRAMEWORK_LIBRARY . '/class.UfOptionsPage.php');
 require_once(UF_PLUGIN_FRAMEWORK_LIBRARY . '/class.UfPlugin.php');
-require_once(UF_GOOGLE_ANALYTICS_PLUGIN_BASE . '/controllers/class.UfGoogleAnalyticsController.php');
 require_once(UF_GOOGLE_ANALYTICS_PLUGIN_BASE . '/models/class.UfGoogleAnalyticsAccount.php');
 
 
@@ -17,22 +16,13 @@ if (! class_exists('UfGoogleAnalyticsPlugin')) {
 				    new UfOption('uf_google_analytics_account', '', 'Google Analytics Account'),
 				)),
 			);
+
 			$this->add_admin_page(new UfOptionsPage($name, '', $options));
 
 			$this->account = $account;
 
 			$this->{get_parent_class(__CLASS__)}($name, $file);
 		}
-
-		
-		function add_plugin_hooks() {
-			parent::add_plugin_hooks();
-
-			$controller = new UfGoogleAnalyticsController($this->account);
-			$this->register_action($controller, 'google_analytics');
-		}
-		
-
 	}
 }
 ?>

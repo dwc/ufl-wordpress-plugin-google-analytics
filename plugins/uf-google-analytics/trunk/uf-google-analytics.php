@@ -3,7 +3,7 @@
 Plugin Name: UF Google Analytics
 Version: 0.1
 Plugin URI: http://www.webadmin.ufl.edu/
-Description: Handling of the Google Analytics footer code and related text on WordPress sites at UF. Requires the <code>uf-plugin-framework</code> plugin.
+Description: Handling of the Google Analytics footer code and related text on WordPress sites at the University of Florida. Requires the <code>uf-plugin-framework</code> plugin.
 Author: Joey Spooner <spooner@ufl.edu>
 Author URI: http://www.spoonstein.com/
 */
@@ -41,5 +41,4 @@ function uf_google_analytics_display() {
 <?php
 	}
 }
-
 ?>
