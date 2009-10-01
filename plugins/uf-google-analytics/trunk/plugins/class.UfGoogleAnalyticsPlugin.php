@@ -1,28 +1,23 @@
 <?php
-require_once(UF_PLUGIN_FRAMEWORK_LIBRARY . '/class.UfOption.php');
-require_once(UF_PLUGIN_FRAMEWORK_LIBRARY . '/class.UfOptionGroup.php');
-require_once(UF_PLUGIN_FRAMEWORK_LIBRARY . '/class.UfOptionsPage.php');
 require_once(UF_PLUGIN_FRAMEWORK_LIBRARY . '/class.UfPlugin.php');
-require_once(UF_GOOGLE_ANALYTICS_PLUGIN_BASE . '/models/class.UfGoogleAnalyticsAccount.php');
-
+require_once(UF_GOOGLE_ANALYTICS_PLUGIN_BASE . '/views/class.UfGoogleAnalyticsPage.php');
+require_once(UF_GOOGLE_ANALYTICS_PLUGIN_BASE . '/controllers/class.UfGoogleAnalyticsController.php');
 
 if (! class_exists('UfGoogleAnalyticsPlugin')) {
-	class UfGoogleAnalyticsPlugin extends UfPlugin {
-	        var $account = "";
+    class UfGoogleAnalyticsPlugin extends UfPlugin {
 
-		function UfGoogleAnalyticsPlugin($name, $file, $account) {
-			$options = array(
-				new UfOptionGroup('General', array(
-				    new UfOption('uf_google_analytics_account', '', 'Google Analytics Account'),
-				)),
-			);
+        function UfGoogleAnalyticsPlugin($name, $file) {
 
-			$this->add_admin_page(new UfOptionsPage($name, '', $options));
+	    $this->add_admin_page(new UfGoogleAnalyticsPage($name));
+	    $this->{get_parent_class(__CLASS__)}($name, $file);
+        }
 
-			$this->account = $account;
+	function add_plugin_hooks() {
+	     parent::add_plugin_hooks();
 
-			$this->{get_parent_class(__CLASS__)}($name, $file);
-		}
-	}
+	     $controller = new UfGoogleAnalyticsController();
+	     $this->register_action($controller, 'save');
+        }
+    }
 }
 ?>

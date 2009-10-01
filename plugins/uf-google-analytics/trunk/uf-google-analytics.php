@@ -9,6 +9,8 @@ Author URI: http://www.spoonstein.com/
 */
 
 define('UF_GOOGLE_ANALYTICS_PLUGIN_BASE', dirname(__FILE__) . '/');
+define('UF_GOOGLE_ANALYTICS_PLUGIN_URL', WP_PLUGIN_URL . '/' . str_replace(basename(__FILE__), "", plugin_basename(__FILE__))); 
+define('UF_GOOGLE_ANALYTICS_PLUGIN_OPTION_NAME', 'uf_google_analytics_account');
 
 // Load the plugin after the framework
 add_action('plugins_loaded', 'uf_google_analytics_plugins_loaded');
@@ -19,18 +21,13 @@ $uf_google_analytics_plugin = null;
 function uf_google_analytics_plugins_loaded() {
 	global $uf_google_analytics_plugin;
 
-        require_once('models/class.UfGoogleAnalyticsAccount.php');
-	$account = new UfGoogleAnalyticsAccount(get_option('blogname'), get_option('uf_google_analytics_account'));
-
 	require_once('plugins/class.UfGoogleAnalyticsPlugin.php');
-	$uf_google_analytics_plugin = new UfGoogleAnalyticsPlugin('Google Analytics', __FILE__, $account);
+	$uf_google_analytics_plugin = new UfGoogleAnalyticsPlugin('Google Analytics', __FILE__);
 }
 
 function uf_google_analytics_display() {
-	global $uf_google_analytics_plugin;
-  
-        $account = null;
-	$account = $uf_google_analytics_plugin->account->account;
+	$account = get_option(UF_GOOGLE_ANALYTICS_PLUGIN_OPTION_NAME);
+
 	if($account) {
 ?>
 <script type="text/javascript">var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www."); document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));</script>
