@@ -31,7 +31,7 @@ function uf_google_analytics_display() {
 	if($account) {
 ?>
 <script type="text/javascript">var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www."); document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));</script>
-<script type="text/javascript">try { var pageTracker = _gat._getTracker("<?php echo $account; ?>"); pageTracker._trackPageview(); } catch(err) {}</script>
+<script type="text/javascript">try { var pageTracker = _gat._getTracker("<?php echo htmlspecialchars($account); ?>"); pageTracker._trackPageview(); } catch(err) {}</script>
 <script type="text/javascript" src="http://assets.webadmin.ufl.edu/js/ga-outbound-tracking/1.0.0/ga-outbound-tracking.min.js"></script>
 <script type="text/javascript" src="http://assets.webadmin.ufl.edu/js/common/1.0.1/common.min.js"></script>
 <script type="text/javascript" src="http://assets.webadmin.ufl.edu/js/search/1.0.1/search.min.js"></script>
